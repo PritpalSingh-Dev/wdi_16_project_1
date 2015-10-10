@@ -26,12 +26,6 @@ document.getElementById("capital_City").value = randomLetter;
 document.getElementById("currency").value = randomLetter;
 }
 
-var submission = document.getElementById("submitForm");
-$("submission").on("click", function(){
-  console.log("clicked");
-  event.preventDefault();
-});
-
 $("#target").on("submit", function( event ) {
   alert( "Handler for .submit() called." );
   event.preventDefault();
