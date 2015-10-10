@@ -26,19 +26,30 @@ document.getElementById("capital_City").value = randomLetter;
 document.getElementById("currency").value = randomLetter;
 }
 
+var submission = document.getElementById("submitForm");
+$("submission").on("click", function(){
+  console.log("clicked");
+  event.preventDefault();
+});
 
+$("#target").on("submit", function( event ) {
+  alert( "Handler for .submit() called." );
+  event.preventDefault();
+});
 
-
-//function getInputBoxesToDisplayLetterGeneratedByComputer() {
-//  var randomLetter = document.getElementsByTagName("input");
-//    document.getElementsByTagName("input").innerHTML = randomLetter;
-//    }
 
 var countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Arzebaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burma", "Burundi", "Cambodia", "Cameroon", "Canada", "Carpe Verde", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Cook Islands", "Croatia", "Cuba", "Cyprus", "Czech Republic"];
 
 var capitalCities = ["Abu Dhabi", "Abuja", "Accra", "Adamstown", "Addis Ababa", "Algiers", "Alofi", "Amman", "Amsterdam", "Andorra", "Antananarivo", "Apia", "Ashgabat", "Asmara", "Astana", "Asuncion", "Athens", "Avaru", "Baghdad", "Baku", "Bamako", "Bandar Seri Begawan", "Bangkok", "Bangui", "Banjul", "Basse-Terre", "Basse-Terre", "Beijing", "Beirut", "Belgrade", "Belmopan", "Berlin", "Bern", "Bishkek", "Bissau", "Bloemfontein","Bogotá", "Brasília", "Bratislava", "Brazzaville", "Bridgetown", "Brussels", "Bucharest", "Budapest", "Buenos Aires", "Bujumbura", "Cairo", "Canberra", "Cape Town", "Caracas", "Castries", "Cayenne", "Charlotte Amalie", "Chisinau", "Cockburn Town", "Canakry", "Copenhagen", "Dakar"];
    
 var currencies = ["Argentine Peso", "Arubian Guilder", "Australian Dollar", "Armenian Dram", "Azerbaijan Manat", "Bahamian Dollar", "Bahraini Dinar", "Bangladeshi Taka", "Barbadian Dollar", "Barbados Dollar", "Belize Dollar", "Bermudian Dollar", "Bhutan Ngultrum", "Bolivia Boliviano", "Botswana  Pula", "Brazilian Real", "Brunei Dollar", "Bulgarian Lev", "Burmese Kyat", "Cape Verde Escudo", "Cambodia  Riel", "Canadian Dollar", "Chilean Peso", "Chinese Yuan"]; 
+
+
+
+
+
+
+
 };
 
 //5. If player enters value and submits value, check starting value against the random character, then loop through each of the arrays to find whether the capital city, country and rivers are correct. Add an eventlistener
