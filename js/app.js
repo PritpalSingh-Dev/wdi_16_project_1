@@ -12,6 +12,11 @@ Player gets 3 points when all 3 input values are correct and the answers match (
 // 3. Add function window.onload {}
 //4. To generate a random letter, use the following code:
 
+window.onload = function() {
+
+var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','y','z']
+    var randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
+alert(randomLetter);
 
 //5. If player enters value and submits value, check starting value against the random character, then loop through each of the arrays to find whether the capital city, country and rivers are correct. Add an eventlistener
 //6. Add a point if one box is correct, else 0
