@@ -24,7 +24,7 @@ window.onload = function() {
     getRandomLetter(startTimer);
   });
 
-  function getRandomLetter(callback) {
+  function getRandomLetter() {
     var alphabet = ['A','B','C'];
     var randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
     $("#test").html(randomLetter);
@@ -33,21 +33,42 @@ window.onload = function() {
     $("#currency").val(randomLetter);
 
     // Start timer
-    callback();
+    startTimer();
   }
 
-  function startTimer(){
-    console.log("GO")
+  //function startTimer(){
+  //  console.log("GO")
+//
+  //  // When timer runs out -> clearBoard
+  //}
 
-    // When timer runs out -> clearBoard
-  }
+   
+        i = 45;
+        function startTimer() {
+          document.getElementById('countdown').innerHTML = i;
+          i--;
+          if (i <= 0) {
+            alert(player1Score);
+          }
+          else {
+            setTimeout(startTimer, 1000);
+          }
+        }
+     
+      startTimer();
+
+
 
   function stopTimer(){
-
+    if ($("#target").on("submit")) {
+    clearInterval(i)
+  };
+//The timer should stop when user submits form.
+//The timer should also stop when user doesn't submit form 
   }
 
   function clearBoard(){
-
+    $("target")[0].reset(); 
   }
 
   function validateForm() {
@@ -84,7 +105,6 @@ window.onload = function() {
   var capitalCities = ["Abu Dhabi", "Abuja", "Accra", "Adamstown", "Addis Ababa", "Algiers", "Alofi", "Ankara", "Amman", "Amsterdam", "Andorra", "Antananarivo", "Apia", "Ashgabat", "Asmara", "Astana", "Asuncion", "Athens", "Avaru", "Baghdad", "Baku", "Bamako", "Bandar Seri Begawan", "Bangkok", "Bangui", "Banjul", "Basse-Terre", "Basse-Terre", "Beijing", "Beirut", "Belgrade", "Belmopan", "Berlin", "Bern", "Bishkek", "Bissau", "Bloemfontein","Bogotá", "Brasília", "Bratislava", "Brazzaville", "Bridgetown", "Brussels", "Bucharest", "Budapest", "Buenos Aires", "Bujumbura", "Cairo", "Canberra", "Cape Town", "Caracas", "Castries", "Cayenne", "Charlotte Amalie", "Chisinau", "Cockburn Town", "Canakry", "Copenhagen",];
 
   var currencies = ["Argentine Peso", "Arubian Guilder", "Australian Dollar", "Armenian Dram", "Azerbaijan Manat", "Bahamian Dollar", "Bahraini Dinar", "Bangladeshi Taka", "Barbadian Dollar", "Barbados Dollar", "Belize Dollar", "Bermudian Dollar", "Bhutan Ngultrum", "Bolivia Boliviano", "Botswana  Pula", "Brazilian Real", "Brunei Dollar", "Bulgarian Lev", "Burmese Kyat", "Cape Verde Escudo", "Cambodia  Riel", "Canadian Dollar", "Chilean Peso", "Chinese Yuan"]; 
-
 };
 
 //5. If player enters value and submits value, check starting value against the random character, then loop through each of the arrays to find whether the capital city, country and rivers are correct. Add an eventlistener
