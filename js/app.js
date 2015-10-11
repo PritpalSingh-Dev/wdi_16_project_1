@@ -14,62 +14,76 @@ Player gets 3 points when all 3 input values are correct and the answers match (
 
 window.onload = function() {
 
-  var button = document.getElementById(".letterGenerator");
-  $("button").on("click", getRandomLetter);
+  var button = $("#letterGenerator");
+  var player1Score = 0;
+  var round  = 0;
 
-  function getRandomLetter() {
+  $("#target").on("submit", validateForm);
+
+  $("button").on("click", function(){
+    getRandomLetter(startTimer);
+  });
+
+  function getRandomLetter(callback) {
     var alphabet = ['A','B','C'];
     var randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
-    document.getElementById("test").innerHTML = randomLetter;
-    document.getElementById("country").value = randomLetter;
-    document.getElementById("capital_City").value = randomLetter;
-    document.getElementById("currency").value = randomLetter;
+    $("#test").html(randomLetter);
+    $("#country").val(randomLetter);
+    $("#capital_City").val(randomLetter);
+    $("#currency").val(randomLetter);
+
+    // Start timer
+    callback();
   }
 
+  function startTimer(){
+    console.log("GO")
 
-  $("#target").on("submit", function validateForm ( event ) {
-    var country1 = document.getElementById("country").value;
-    var capititalCity1 = document.getElementById("capital_City").value;
-    var currency1 = document.getElementById("currency").value;
-    var player1Score="";
+    // When timer runs out -> clearBoard
+  }
+
+  function stopTimer(){
+
+  }
+
+  function clearBoard(){
+
+  }
+
+  function validateForm() {
+    event.preventDefault();
+
+    var country1 = $("#country").val();
+    var capititalCity1 = $("#capital_City").val();
+    var currency1 = $("#currency").val();
+    player1Score;
 
     if (countries.indexOf(country1)>-1) {
-    player1Score++; //alert (country1 + " exits!")
-      }  else {
-    player1Score;   //alert("It doesn't exist");
-      }
-    if (capitalCities.indexOf(capititalCity1)>-1) {
-    player1Score++;  //alert(capititalCity1 + " exists");
-      }
-         else {
-    player1Score; //alert("This capital city doesn't exist");
-      }
-    if (currencies.indexOf(currency1)>-1) {
-    player1Score++; //alert(currency1 + " exists!");
+      player1Score++;
     } else {
-    player1Score; //alert("It doesn't exist");
+      player1Score;
+    }
+
+    if (capitalCities.indexOf(capititalCity1)>-1) {
+      player1Score++;
+    } else {
+      player1Score;
+    }
+
+    if (currencies.indexOf(currency1)>-1) {
+      player1Score++;
+    } else {
+      player1Score;
+    }
+
+    $("#displayScoreId").html("Score: " + player1Score);
   }
-})
 
-  function displayScore () {
-    ;
-  }
+  var countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Arzebaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burma", "Burundi", "Cambodia", "Cameroon", "Canada", "Carpe Verde", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Cook Islands", "Croatia", "Cuba", "Cyprus", "Czech Republic"];
 
-//  validateForm() {
-// var country1 = document.getElementById("#target").input["country"];
-//    if (country1 == "") {
-//        alert("Name must be filled out"); 
-//        }else {
-//          alert("not working");
-//        }
-//        event.preventDefault();
-//})
+  var capitalCities = ["Abu Dhabi", "Abuja", "Accra", "Adamstown", "Addis Ababa", "Algiers", "Alofi", "Ankara", "Amman", "Amsterdam", "Andorra", "Antananarivo", "Apia", "Ashgabat", "Asmara", "Astana", "Asuncion", "Athens", "Avaru", "Baghdad", "Baku", "Bamako", "Bandar Seri Begawan", "Bangkok", "Bangui", "Banjul", "Basse-Terre", "Basse-Terre", "Beijing", "Beirut", "Belgrade", "Belmopan", "Berlin", "Bern", "Bishkek", "Bissau", "Bloemfontein","Bogotá", "Brasília", "Bratislava", "Brazzaville", "Bridgetown", "Brussels", "Bucharest", "Budapest", "Buenos Aires", "Bujumbura", "Cairo", "Canberra", "Cape Town", "Caracas", "Castries", "Cayenne", "Charlotte Amalie", "Chisinau", "Cockburn Town", "Canakry", "Copenhagen",];
 
-var countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Arzebaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burma", "Burundi", "Cambodia", "Cameroon", "Canada", "Carpe Verde", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Cook Islands", "Croatia", "Cuba", "Cyprus", "Czech Republic"];
-
-var capitalCities = ["Abu Dhabi", "Abuja", "Accra", "Adamstown", "Addis Ababa", "Algiers", "Alofi", "Ankara", "Amman", "Amsterdam", "Andorra", "Antananarivo", "Apia", "Ashgabat", "Asmara", "Astana", "Asuncion", "Athens", "Avaru", "Baghdad", "Baku", "Bamako", "Bandar Seri Begawan", "Bangkok", "Bangui", "Banjul", "Basse-Terre", "Basse-Terre", "Beijing", "Beirut", "Belgrade", "Belmopan", "Berlin", "Bern", "Bishkek", "Bissau", "Bloemfontein","Bogotá", "Brasília", "Bratislava", "Brazzaville", "Bridgetown", "Brussels", "Bucharest", "Budapest", "Buenos Aires", "Bujumbura", "Cairo", "Canberra", "Cape Town", "Caracas", "Castries", "Cayenne", "Charlotte Amalie", "Chisinau", "Cockburn Town", "Canakry", "Copenhagen",];
-   
-var currencies = ["Argentine Peso", "Arubian Guilder", "Australian Dollar", "Armenian Dram", "Azerbaijan Manat", "Bahamian Dollar", "Bahraini Dinar", "Bangladeshi Taka", "Barbadian Dollar", "Barbados Dollar", "Belize Dollar", "Bermudian Dollar", "Bhutan Ngultrum", "Bolivia Boliviano", "Botswana  Pula", "Brazilian Real", "Brunei Dollar", "Bulgarian Lev", "Burmese Kyat", "Cape Verde Escudo", "Cambodia  Riel", "Canadian Dollar", "Chilean Peso", "Chinese Yuan"]; 
+  var currencies = ["Argentine Peso", "Arubian Guilder", "Australian Dollar", "Armenian Dram", "Azerbaijan Manat", "Bahamian Dollar", "Bahraini Dinar", "Bangladeshi Taka", "Barbadian Dollar", "Barbados Dollar", "Belize Dollar", "Bermudian Dollar", "Bhutan Ngultrum", "Bolivia Boliviano", "Botswana  Pula", "Brazilian Real", "Brunei Dollar", "Bulgarian Lev", "Burmese Kyat", "Cape Verde Escudo", "Cambodia  Riel", "Canadian Dollar", "Chilean Peso", "Chinese Yuan"]; 
 
 };
 
