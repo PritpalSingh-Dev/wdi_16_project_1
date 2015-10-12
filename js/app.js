@@ -12,27 +12,18 @@ Player gets 3 points when all 3 input values are correct and the answers match (
 // 3. Add function window.onload {}
 //4. To generate a random letter, use the following code:
 
-//function player1or2Turn() {
-// if (rounds % 2 === 0) {
-// rounds++;
-//document.getElementById("").innerHTML = "It's" + player1 + "'s turn!"
-//   
-//} else {
-// document.getElementById("").innerHTML = "It's + player2 + "'s turn!"
-//}
-//}
-//
-//
-//
-//
+
 
 window.onload = function() {
 
-  var button = $("#playGameId");
+  var button = $('#playGameId');
+  var Player1;
+  var Player2;
   var player1Score = 0;
+  var player2Score = 0;
   var round  = 0;
 
-  $("#formId").on("submit", function(){
+$("#formId").on("submit", function(){
     stopTimer();
     validateForm();
     $("#displayScoreId").html("Score: " + player1Score);
@@ -47,6 +38,15 @@ window.onload = function() {
     startTimer();
     getRandomLetter();
   }
+
+ // function player1or2Turn(player1, player2) {
+ // if (rounds % 2 === 0) {
+ // rounds++;
+ // document.getElementById("playerTurnsDisplayId").innerHTML = "It's" + player1 + "s turn!";
+ // } else {
+ // document.getElementById("playerTurnsDisplayId").innerHTML = "It's" + player2 + "'s turn!"//;
+ // }
+ // }
 
   function getRandomLetter(){
     var alphabet = ['A','B','C'];
@@ -113,6 +113,19 @@ function validateForm() {
 
   console.log("submitted")
 }
+
+//var winner;
+//function getWinner(player1Score, player2Score) {
+//  if (player1Score === player2Score) {
+//    winner = "It's a tie. Well done" + player1 " and" + player2"!";
+//  }
+//  else if (player1Score > player2Score) {
+//    winner = player1 + " wins!";
+//  }
+//  else if (player2Score > player1Score) {
+//    winner = player2 + " wins!";
+//  }
+//}
 
 var countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Arzebaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burma", "Burundi", "Cambodia", "Cameroon", "Canada", "Carpe Verde", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Cook Islands", "Croatia", "Cuba", "Cyprus", "Czech Republic"];
 
