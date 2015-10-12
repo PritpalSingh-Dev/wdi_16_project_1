@@ -12,13 +12,27 @@ Player gets 3 points when all 3 input values are correct and the answers match (
 // 3. Add function window.onload {}
 //4. To generate a random letter, use the following code:
 
+//function player1or2Turn() {
+// if (rounds % 2 === 0) {
+// rounds++;
+//document.getElementById("").innerHTML = "It's" + player1 + "'s turn!"
+//   
+//} else {
+// document.getElementById("").innerHTML = "It's + player2 + "'s turn!"
+//}
+//}
+//
+//
+//
+//
+
 window.onload = function() {
 
-  var button = $("#letterGenerator");
+  var button = $("#playGameId");
   var player1Score = 0;
   var round  = 0;
 
-  $("#target").on("submit", function(){
+  $("#formId").on("submit", function(){
     stopTimer();
     validateForm();
     $("#displayScoreId").html("Score: " + player1Score);
@@ -28,11 +42,8 @@ window.onload = function() {
 
   $("button").on("click", startGame);
 
-
-
-
   function startGame() {
-    $("#letterGenerator").css("display", "none")
+    $("#playGameId").css("display", "none")
     startTimer();
     getRandomLetter();
   }
@@ -40,7 +51,7 @@ window.onload = function() {
   function getRandomLetter(){
     var alphabet = ['A','B','C'];
     var randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
-    $("#test").html(randomLetter);
+    $("#randomLetterDisplayId").html(randomLetter);
     $("#country").val(randomLetter);
     $("#capital_City").val(randomLetter);
     $("#currency").val(randomLetter);
@@ -55,8 +66,8 @@ window.onload = function() {
       clearBoard();
       console.log(player1Score + " You ran out of time.");
       stopTimer();
-      $("#test").html("You ran out of time, try again")
-      $("#letterGenerator").css("display", "")
+      $("#randomLetterDisplayId").html("You ran out of time, try again")
+      $("#playGameId").css("display", "")
     }
     else {
       setTimeout(startTimer, 1000);
@@ -69,7 +80,7 @@ window.onload = function() {
   };
 
   function clearBoard(){
-    $("#test").html("");
+    $("#randomLetterDisplayId").html("");
     $("#country").val("");
     $("#capital_City").val("");
     $("#currency").val("");
