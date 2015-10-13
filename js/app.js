@@ -1,17 +1,8 @@
-window.onload = function() {
-
-  var button = $('#playGameId');
-  var Player1;
-  var Player2;
-  var player1Score = 0;
-  var player2Score = 0;
-  var round  = 0;
-
-//  var nextTurn = player2;
+// var nextTurn = player2;
 // if (#formId == "")
 //  {
-//       if(document.getElementById("").innerHTML == ""){ 
-//            document.getElementById("").innerHTML = nextTurn;
+//       if(document.getElementById("playerTurnsDisplayId").innerHTML == ""){ 
+//            document.getElementById("playerTurnsDisplayId").innerHTML = nextTurn;
 //            changeTurn();
 //       }
 //  }  
@@ -23,10 +14,20 @@ window.onload = function() {
 //        }
 //   } 
 
-$("#formId").on("submit", function(){
+window.onload = function() {
+
+  var button = $('#playGameId');
+  var player1 = "Player 1";
+  var player2 = "Player 2";
+  var player1Score = 0;
+  var player2Score = 0;
+  var rounds  = 0;
+
+  $("#formId").on("submit", function(){
     stopTimer();
     validateForm();
-    $("#displayScoreId").html("Score: " + player1Score);
+    $("#displayScoreP1Id").html( player1 + "'s Score: " + player1Score);
+    $("#displayScoreP2Id").html( player2 + "'s Score : " + player2Score)
     clearBoard();
     getRandomLetter();
   });
@@ -35,18 +36,19 @@ $("#formId").on("submit", function(){
 
   function startGame() {
     $("#playGameId").css("display", "none")
+    player1or2Turn(player1, player2);
     startTimer();
     getRandomLetter();
   }
 
- // function player1or2Turn(player1, player2) {
- // if (rounds % 2 === 0) {
- // rounds++
- // document.getElementById("playerTurnsDisplayId").innerHTML = "It's" + player1 + "s turn!";
- // } else {
- // document.getElementById("playerTurnsDisplayId").innerHTML = "It's" + player2 + "'s turn!"//;
- // }
- // }
+  function player1or2Turn(player1, player2) {
+    if (rounds % 2 === 0) {
+      rounds++;
+      document.getElementById("playerTurnsDisplayId").innerHTML = "It's " + player1 + "s turn!";
+    } else if (rounds % 1 === 0) {
+      document.getElementById("playerTurnsDisplayId").innerHTML = "It's " + player2 + "'s turn!"; rounds++;
+    }
+  }
 
   function getRandomLetter(){
     var alphabet = ['A','B','C'];
@@ -65,8 +67,8 @@ $("#formId").on("submit", function(){
       clearBoard();
       console.log(player1Score + " You ran out of time.");
       stopTimer();
-      $("#randomLetterDisplayId").html("You ran out of time, try again")
-      $("#playGameId").css("display", "")
+      $("#randomLetterDisplayId").html("You ran out of time, try again");
+      $("#playGameId").css("display", "");
     }
     else {
       setTimeout(startTimer, 1000);
@@ -85,31 +87,37 @@ $("#formId").on("submit", function(){
     $("#currency").val("");
   }
 
-function validateForm() {
-  event.preventDefault();
+  function validateForm() {
+    event.preventDefault();
 
-  var country1 = $("#country").val();
-  var capititalCity1 = $("#capital_City").val();
-  var currency1 = $("#currency").val();
+    var country1 = $("#country").val();
+    var capititalCity1 = $("#capital_City").val();
+    var currency1 = $("#currency").val();
 
-  if (countries.indexOf(country1)>-1) {
-    player1Score++;
-  }
+    if (countries.indexOf(country1)>-1) {
+      player1Score++;
+      player2Score++;
+    }
 
-  if (capitalCities.indexOf(capititalCity1)>-1) {
-    player1Score++;
-  }
+    if (capitalCities.indexOf(capititalCity1)>-1) {
+      player1Score++;
+      player2Score++;
+    }
 
-  if (currencies.indexOf(currency1)>-1) {
-    player1Score++;
-  }
+    if (currencies.indexOf(currency1)>-1) {
+      player1Score++;
+      player2Score++;
+    }
 
   //console.log(player1Score)
 
   //console.log("submitted")
 }
 //
-// rounds
+// For each round increment score until each player has played 5 rounds (given input values for 5 random characters)
+//After each player has played 5 rounds, compare score and declare winner of the game
+//
+// 
 //
 //var winner;
 //function getWinner(player1Score, player2Score) {
