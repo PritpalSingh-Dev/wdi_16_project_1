@@ -1,5 +1,6 @@
 h1 {
   text-align: center;
+  font-size: 33px;
 }
 
 #img1 {
@@ -86,22 +87,32 @@ header, main, footer {
 }
 
 #countdown {
-   font-size: 35px;
-   color:green; 
-   font-weight: bold;
-   animation-duration: 35s;
+  min-height: 45px;
+  font-size: 30px;
+  color:green; 
+  font-weight: bold;
+  text-align: center;
+  animation-duration: 35s;
 }
 
 .colorChange {
   animation-name: countdownSeconds;
 }  
 
-    @keyframes countdownSeconds {
-        25%   {color: green;}
-        /*65%  {color: yellow;}*/
-        50%  {color: orange;}
-        100%  {color: red;}
-    }
+@keyframes countdownSeconds {
+    25%   {color: green;}
+    50%  {color: orange;}
+    100%  {color: red;}
+}
+
+#player1score, #player2score {
+  font-size: 25px;
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+}
 
 
 /*        -webkit-animation-name: example; /* Chrome, Safari, Opera */

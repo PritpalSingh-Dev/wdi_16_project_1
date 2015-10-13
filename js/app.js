@@ -1,5 +1,5 @@
 var countries     = window.countries,
-    currencies    = window.countries,
+    currencies    = window.currencies,
     capitalCities = window.capitalCities,
     alphabet      = window.alphabet,
     player1Score,
@@ -15,12 +15,23 @@ $(function() {
   numberOfGuesses = 0;
   player          = "1";
 
+  $("h1").hide().fadeIn("slow");
+  $("main").hide().fadeIn("slow");
+
   $("#startRound").on("click", startRound);
   $("#formId").on("submit", guess);
+
+  setTimeout(function(){
+    $('#img1').addClass("animated flip");
+  }, 1000);
+
+  setTimeout(function(){
+    $('#img2').addClass("animated flip");
+  }, 2000);
+
 });
 
 function guess(){
-  toggleRoundButton("#formId");
   checkAnswers();
   stopTimer();
 
@@ -82,6 +93,8 @@ function stopTimer(){
   clearBoard();
   $('#countdown').removeClass('colorChange');
   $("#startRound").toggleClass("hide");
+  $("#formId").toggleClass("hide");
+  $('#countdown').html("0")
 }
 
 function clearBoard(){
