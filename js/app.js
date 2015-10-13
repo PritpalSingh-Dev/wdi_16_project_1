@@ -80,7 +80,7 @@ function getRandomLetter(){
 
 function startTimer(i) {
   $('#countdown').addClass('colorChange');
-  var counter = 30000+2000;   //25000
+  var counter = 30000+2000;  
   timer = setInterval(function(){
     $('#countdown').html((counter-2000)/1000);
     counter-=1000;
@@ -116,7 +116,6 @@ function checkAnswers() {
   if (capitalCities.indexOf(capitalCity) > -1) counter++;
   if (currencies.indexOf(currency) > -1)       counter++;
 
-  // Choose which player's score to increment depending on the "player"
   if (player === "1") {
     player1Score += counter;
   } else {
