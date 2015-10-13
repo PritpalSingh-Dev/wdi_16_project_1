@@ -1,3 +1,21 @@
+h1 {
+  text-align: center;
+}
+
+#img1 {
+  height: 7em;
+  width: 7em;
+  display: inline-block;
+      margin-left: 85px;
+}
+
+#img2 {
+  height: 7em;
+  width: 7em;
+  display: inline-block;
+      margin-right: auto ;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   line-height: 1.5;
@@ -39,19 +57,61 @@ input, select, textarea {
   background: #99CC01;
 }
 
-input[type="submit"] {
-  background: #33B5E6;
+input[type="submit"], button {
+  background: #5596CC;
   font-weight: bold;
   font-size: 30px;
   margin: 10px 0;
   color: #fff;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 header, main, footer {
   max-width: 400px;
-  margin: 0 auto;
+  margin: 30px auto;
 }
 
 .hide {
   display: none;
 }
+
+#randomLetterDisplayId {
+  text-align: center;
+  font-size: 65px;
+  font-weight: bold;
+  margin: 0;
+}
+
+#countdown {
+   font-size: 35px;
+   color:green; 
+   font-weight: bold;
+   animation-duration: 35s;
+}
+
+.colorChange {
+  animation-name: countdownSeconds;
+}  
+
+    @keyframes countdownSeconds {
+        25%   {color: green;}
+        /*65%  {color: yellow;}*/
+        50%  {color: orange;}
+        100%  {color: red;}
+    }
+
+
+/*        -webkit-animation-name: example; /* Chrome, Safari, Opera */
+/*        -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
+/*        animation-name: example;
+/*        animation-duration: 4s;
+/*    }
+/*
+/*    /* Chrome, Safari, Opera */
+/*    @-webkit-keyframes example {
+/*        from {background-color: red;}
+/*        to {background-color: yellow;}
+/*    }/*

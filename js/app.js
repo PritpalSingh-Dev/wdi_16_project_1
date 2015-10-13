@@ -20,6 +20,7 @@ $(function() {
 });
 
 function guess(){
+  toggleRoundButton("#formId");
   checkAnswers();
   stopTimer();
 
@@ -28,6 +29,7 @@ function guess(){
   
   numberOfGuesses++;
   player = (numberOfGuesses % 2 === 0) ? "1" : "2";
+  $("#countdown").html("Player "+player+" to play next!")
   endGame();
 }
 
@@ -41,16 +43,18 @@ function endGame(){
     } else {
       $("#randomLetterDisplayId").html("It's a tie!");
     }
+    $("#countdown").html("Start new game!");
   }
 }
 
-function toggleRoundButton(){
-  return $("#startRound").toggleClass("hide");
+function toggleRoundButton(selector){
+  return $(selector).toggleClass("hide");
 }
 
 function startRound() {
   event.preventDefault();
-  toggleRoundButton();
+  toggleRoundButton("#startRound");
+  toggleRoundButton("#formId");
   startTimer(25);
   getRandomLetter();
 }
@@ -59,12 +63,13 @@ function getRandomLetter(){
   var randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
   $("#randomLetterDisplayId").html(randomLetter);
   $("#country").val(randomLetter);
-  $("#capital_City").val(randomLetter);
+  $("#capitalCity").val(randomLetter);
   $("#currency").val(randomLetter);
 }
 
 function startTimer(i) {
-  var counter = 25000+2000;
+  $('#countdown').addClass('colorChange');
+  var counter = 30000+2000;   //25000
   timer = setInterval(function(){
     $('#countdown').html((counter-2000)/1000);
     counter-=1000;
@@ -75,14 +80,14 @@ function startTimer(i) {
 function stopTimer(){
   clearInterval(timer);
   clearBoard();
+  $('#countdown').removeClass('colorChange');
   $("#startRound").toggleClass("hide");
-  $("#countdown").html("Start next round!")
 }
 
 function clearBoard(){
   $("#randomLetterDisplayId").html("");
   $("#country").val("");
-  $("#capital_City").val("");
+  $("#capitalCity").val("");
   $("#currency").val("");
 }
 
@@ -90,7 +95,7 @@ function checkAnswers() {
   event.preventDefault();
 
   var country     = $("#country").val();
-  var capitalCity = $("#capital_City").val();
+  var capitalCity = $("#capitalCity").val();
   var currency    = $("#currency").val();
   var counter     = 0;
 
