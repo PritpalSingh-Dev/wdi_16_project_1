@@ -4,7 +4,6 @@ var countries     = window.countries,
     alphabet      = window.alphabet,
     player1Score,
     player2Score,
-    rounds,
     numberOfGuesses,
     playerScore,
     player,
@@ -13,7 +12,6 @@ var countries     = window.countries,
 $(function() {
   player1Score    = 0;
   player2Score    = 0;
-  rounds          = 0;
   numberOfGuesses = 0;
   player          = "1";
 
@@ -30,6 +28,20 @@ function guess(){
   
   numberOfGuesses++;
   player = (numberOfGuesses % 2 === 0) ? "1" : "2";
+  endGame();
+}
+
+function endGame(){
+  var winner;
+  if (numberOfGuesses === 10) {
+    if (player1Score > player2Score) {
+      $("#randomLetterDisplayId").html("The winner is player 1!");
+    } else if (player1Score < player2Score) {
+      $("#randomLetterDisplayId").html("The winner is player 2!");
+    } else {
+      $("#randomLetterDisplayId").html("It's a tie!");
+    }
+  }
 }
 
 function toggleRoundButton(){
