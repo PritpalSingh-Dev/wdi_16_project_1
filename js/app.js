@@ -1,141 +1,95 @@
-// var nextTurn = player2;
-// if (#formId == "")
-//  {
-//       if(document.getElementById("playerTurnsDisplayId").innerHTML == ""){ 
-//            document.getElementById("playerTurnsDisplayId").innerHTML = nextTurn;
-//            changeTurn();
-//       }
-//  }  
-//  function changeTurn(){
-//        if(nextTurn == player2){
-//             nextTurn = player1;
-//        } else {
-//             nextTurn = player2;
-//        }
-//   } 
+var countries     = window.countries,
+    currencies    = window.countries,
+    capitalCities = window.capitalCities,
+    alphabet      = window.alphabet,
+    player1Score,
+    player2Score,
+    rounds,
+    numberOfGuesses,
+    playerScore,
+    player,
+    timer;
 
-window.onload = function() {
+$(function() {
+  player1Score    = 0;
+  player2Score    = 0;
+  rounds          = 0;
+  numberOfGuesses = 0;
+  player          = "1";
 
-  var button = $('#playGameId');
-  var player1 = "Player 1";
-  var player2 = "Player 2";
-  var player1Score = 0;
-  var player2Score = 0;
-  var rounds  = 0;
+  $("#startRound").on("click", startRound);
+  $("#formId").on("submit", guess);
+});
 
-  $("#formId").on("submit", function(){
-    stopTimer();
-    validateForm();
-    $("#displayScoreP1Id").html( player1 + "'s Score: " + player1Score);
-    $("#displayScoreP2Id").html( player2 + "'s Score : " + player2Score)
-    clearBoard();
-    getRandomLetter();
-  });
+function guess(){
+  checkAnswers();
+  stopTimer();
 
-  $("button").on("click", startGame);
-
-  function startGame() {
-    $("#playGameId").css("display", "none")
-    player1or2Turn(player1, player2);
-    startTimer();
-    getRandomLetter();
-  }
-
-  function player1or2Turn(player1, player2) {
-    if (rounds % 2 === 0) {
-      rounds++;
-      document.getElementById("playerTurnsDisplayId").innerHTML = "It's " + player1 + "s turn!";
-    } else if (rounds % 1 === 0) {
-      document.getElementById("playerTurnsDisplayId").innerHTML = "It's " + player2 + "'s turn!"; rounds++;
-    }
-  }
-
-  function getRandomLetter(){
-    var alphabet = ['A','B','C'];
-    var randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
-    $("#randomLetterDisplayId").html(randomLetter);
-    $("#country").val(randomLetter);
-    $("#capital_City").val(randomLetter);
-    $("#currency").val(randomLetter);
-  }
-
-  var i=25;
-  function startTimer() {
-    document.getElementById('countdownId').innerHTML = i;
-    i--;
-    if (i < 0) {
-      clearBoard();
-      console.log(player1Score + " You ran out of time.");
-      stopTimer();
-      $("#randomLetterDisplayId").html("You ran out of time, try again");
-      $("#playGameId").css("display", "");
-    }
-    else {
-      setTimeout(startTimer, 1000);
-    }
-  }
-
-  function stopTimer(){
-    clearTimeout();
-    i=25;
-  };
-
-  function clearBoard(){
-    $("#randomLetterDisplayId").html("");
-    $("#country").val("");
-    $("#capital_City").val("");
-    $("#currency").val("");
-  }
-
-  function validateForm() {
-    event.preventDefault();
-
-    var country1 = $("#country").val();
-    var capititalCity1 = $("#capital_City").val();
-    var currency1 = $("#currency").val();
-
-    if (countries.indexOf(country1)>-1) {
-      player1Score++;
-      player2Score++;
-    }
-
-    if (capitalCities.indexOf(capititalCity1)>-1) {
-      player1Score++;
-      player2Score++;
-    }
-
-    if (currencies.indexOf(currency1)>-1) {
-      player1Score++;
-      player2Score++;
-    }
-
-  //console.log(player1Score)
-
-  //console.log("submitted")
+  playerScore = (player === "1") ? player1Score : player2Score;
+  $("#player"+player+"score").html("Player "+ player +"'s Score: " + playerScore);
+  
+  numberOfGuesses++;
+  player = (numberOfGuesses % 2 === 0) ? "1" : "2";
 }
-//
-// For each round increment score until each player has played 5 rounds (given input values for 5 random characters)
-//After each player has played 5 rounds, compare score and declare winner of the game
-//
-// 
-//
-//var winner;
-//function getWinner(player1Score, player2Score) {
-//  if (player1Score === player2Score) {
-//    winner = "It's a tie. Well done" + player1 " and" + player2"!";
-//  }
-//  else if (player1Score > player2Score) {
-//    winner = player1 + " wins!";
-//  }
-//  else if (player2Score > player1Score) {
-//    winner = player2 + " wins!";
-//  }
-//}
 
-var countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Arzebaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burma", "Burundi", "Cambodia", "Cameroon", "Canada", "Carpe Verde", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Cook Islands", "Croatia", "Cuba", "Cyprus", "Czech Republic"];
+function toggleRoundButton(){
+  return $("#startRound").toggleClass("hide");
+}
 
-var capitalCities = ["Abu Dhabi", "Abuja", "Accra", "Adamstown", "Addis Ababa", "Algiers", "Alofi", "Ankara", "Amman", "Amsterdam", "Andorra", "Antananarivo", "Apia", "Ashgabat", "Asmara", "Astana", "Asuncion", "Athens", "Avaru", "Baghdad", "Baku", "Bamako", "Bandar Seri Begawan", "Bangkok", "Bangui", "Banjul", "Basse-Terre", "Basse-Terre", "Beijing", "Beirut", "Belgrade", "Belmopan", "Berlin", "Bern", "Bishkek", "Bissau", "Bloemfontein","Bogotá", "Brasília", "Bratislava", "Brazzaville", "Bridgetown", "Brussels", "Bucharest", "Budapest", "Buenos Aires", "Bujumbura", "Cairo", "Canberra", "Cape Town", "Caracas", "Castries", "Cayenne", "Charlotte Amalie", "Chisinau", "Cockburn Town", "Canakry", "Copenhagen",];
+function startRound() {
+  event.preventDefault();
+  toggleRoundButton();
+  startTimer(25);
+  getRandomLetter();
+}
 
-var currencies = ["Argentine Peso", "Arubian Guilder", "Australian Dollar", "Armenian Dram", "Azerbaijan Manat", "Bahamian Dollar", "Bahraini Dinar", "Bangladeshi Taka", "Barbadian Dollar", "Barbados Dollar", "Belize Dollar", "Bermudian Dollar", "Bhutan Ngultrum", "Bolivia Boliviano", "Botswana  Pula", "Brazilian Real", "Brunei Dollar", "Bulgarian Lev", "Burmese Kyat", "Cape Verde Escudo", "Cambodia  Riel", "Canadian Dollar", "Chilean Peso", "Chinese Yuan"]; 
+function getRandomLetter(){
+  var randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
+  $("#randomLetterDisplayId").html(randomLetter);
+  $("#country").val(randomLetter);
+  $("#capital_City").val(randomLetter);
+  $("#currency").val(randomLetter);
+}
 
-};
+function startTimer(i) {
+  var counter = 25000+2000;
+  timer = setInterval(function(){
+    $('#countdown').html((counter-2000)/1000);
+    counter-=1000;
+    if (counter === 0) return stopTimer();
+  }, 1000);
+}
+
+function stopTimer(){
+  clearInterval(timer);
+  clearBoard();
+  $("#startRound").toggleClass("hide");
+  $("#countdown").html("Start next round!")
+}
+
+function clearBoard(){
+  $("#randomLetterDisplayId").html("");
+  $("#country").val("");
+  $("#capital_City").val("");
+  $("#currency").val("");
+}
+
+function checkAnswers() {
+  event.preventDefault();
+
+  var country     = $("#country").val();
+  var capitalCity = $("#capital_City").val();
+  var currency    = $("#currency").val();
+  var counter     = 0;
+
+  if (countries.indexOf(country) > -1)         counter++;
+  if (capitalCities.indexOf(capitalCity) > -1) counter++;
+  if (currencies.indexOf(currency) > -1)       counter++;
+
+  // Choose which player's score to increment depending on the "player"
+  if (player === "1") {
+    player1Score += counter;
+  } else {
+    player2Score += counter;
+  }
+}
