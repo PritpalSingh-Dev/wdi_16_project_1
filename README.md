@@ -32,7 +32,7 @@ This game is a two-player game, in which the next round only starts once the pla
 
 6. Each player plays up to 5 rounds. The user with the highest score wins unless there is a tie! Game is now over or press the "Start next round" to load a new round. 
 
-![](./CapitalCountryCurrencyImg) 
+![](/CapitalCountryCurrencyImg.png)
 
 
 ## CODING APPROACH
